@@ -15,7 +15,7 @@
             id: ldbtn
 
 
-<MyGridLayout>
+<MyGridLayout>:
 
     id: text_input
     cols: 1
@@ -25,10 +25,17 @@
         orientation: "vertical"
         size: root.width, root.height
 
-        Button:
-            text: "Open File"
-            size_hint: (.2, .2)
-            on_press: root.open()
+        BoxLayout:
+            size_hint: (1, 0.1)
+            Button:
+                text: "Open File"
+                size_hint: (.2, 1)
+                on_press: root.open()
 
-        TextInput
+            Button:
+                text: "Save As File"
+                size_hint: (.2, 1)
+                on_press: root.saveAs()
+
+        TextInput:
             id: text_input
