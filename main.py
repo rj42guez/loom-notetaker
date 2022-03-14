@@ -18,26 +18,37 @@ class MyGridLayout(Widget):
     text_input = ObjectProperty()
     popup = ObjectProperty()
 
+
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as stream:
             self.ids.text_input.text = stream.read()
         self.popup.dismiss()
     
+
     def open(self):
         Tk().withdraw()
         path = filedialog.askopenfilename()
+        self.file_path = path
         if path:
             file = open(path, 'r')
             contents = file.read()
             file.close()
             self.ids.text_input.text = contents
 
+
     def saveAs(self):
-        Tk().withdraw()
+        Tk().withdraw() # hide tkinter window
         path = filedialog.asksaveasfilename(defaultextension=".txt",filetypes=[("All Files","*.*"),("Text Documents","*.txt")])
         if path:
             file = open(path, 'w')
             file.write(self.ids.text_input.text)
+
+
+    def new(self):
+        # first clear contents
+        self.ids.text_input.text = ""
+        # functionally the same as saveAs
+        self.saveAs()
 
 
 

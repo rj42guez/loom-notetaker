@@ -27,6 +27,12 @@
 
         BoxLayout:
             size_hint: (1, 0.1)
+
+            Button:
+                text: "New File"
+                size_hint: (.2, 1)
+                on_press: root.new()
+
             Button:
                 text: "Open File"
                 size_hint: (.2, 1)
