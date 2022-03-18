@@ -50,13 +50,23 @@ class MyGridLayout(Widget):
             file = open(path, 'w')
             file.write(self.ids.text_input.text)
             messagebox.showinfo("Save As", "File successfully saved.")
+    
+    
+    def link(self):
+        Tk().withdraw() # hide tkinter window
+        path = filedialog.askopenfilename()
+        self.file_path = path
+        if path:
+            file = open(path, 'r')
+            contents = file.read()
+            self.ids.text_input.text += '\n\n'
+            self.ids.text_input.text += contents
 
 
     def new(self):
         # first clear contents
         self.ids.text_input.text = ""
 
-        # reset current to FALSE so that save will trigger as saveAs
         global current
         current = False
 
@@ -73,7 +83,6 @@ class MyGridLayout(Widget):
             messagebox.showinfo("Save", "File successfully saved.")
         else:
             self.saveAs()
-
 
 
 
